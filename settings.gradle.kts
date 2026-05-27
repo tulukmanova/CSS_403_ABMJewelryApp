@@ -22,5 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Milestone1"
+rootProject.name = "ABMJewelryApp"
 include(":app")
+ 
