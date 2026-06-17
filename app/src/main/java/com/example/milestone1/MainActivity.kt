@@ -3,9 +3,11 @@ package com.example.milestone1
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.content.MediaType.Companion.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -32,6 +34,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,7 +47,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 // ============================================================
-// ABM Jewelry Shop — Milestone 1 (CSS-403)
+// ABM Jewelry Shop — Milestones_Final Project (CSS-403)
 // Author: Takhmina Ulukmanova
 // Based on the CSS 303/304 medium-fidelity prototype (Moqups)
 // Single-file Compose project with 6 screens
@@ -206,6 +210,7 @@ fun ABMNavBar(
 fun ProductCard(
     name: String = "NAME OF ITEM",
     price: String = "Price",
+    imageRes: Int = R.drawable.bracelet_gold,
     onClick: () -> Unit = {}
 ) {
     Column(
@@ -215,15 +220,14 @@ fun ProductCard(
             .clickable { onClick() }
             .padding(8.dp)
     ) {
-        // Box: image placeholder
-        Box(
+        Image(
+            painter = painterResource(id = imageRes),
+            contentDescription = name,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(160.dp)
-                .background(Color(0xFFE6E6E6)),
-            contentAlignment = Alignment.Center
-        ) {
-            Text("[image]", color = Color.Gray, fontSize = 10.sp)
+                .height(160.dp),
+            contentScale = ContentScale.Crop
+        )
         }
         Spacer(modifier = Modifier.height(8.dp))
         // Box: name
@@ -241,7 +245,6 @@ fun ProductCard(
             color = Color.Black
         )
     }
-}
 
 // ============================================================
 // SCREEN 1: HOME (NEW IN)
